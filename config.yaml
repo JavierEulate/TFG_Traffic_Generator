@@ -1,0 +1,79 @@
+# IP_src Global para todos los tráficos
+IP_src:
+  src1: '16.0.0.0' # Mínimo valor del rango
+  src2: '16.0.0.254' #Máximo valor del rango
+  op: 'inc' #Toma los valores 'inc', 'dec', 'random'
+
+# IP_dst Global para todos los tráficos
+IP_dst:
+  dst1: '48.0.0.0'
+  dst2: '48.0.0.254'
+  op: 'inc'
+
+# Tráficos soportados por la herramienta, en caso de necesidad puede añadir el suyo propio importando un fichero pcap
+simulated:
+  - text: 'Tráfico DNS' #Nombre del tráfico 
+    pcap_file: './cap2/dns2.pcap' #Ruta del fichero pcap utilizado para generar el tráfico
+    users: 10 #Número de clientes 
+    capture_file: './Traffic_capture/dns_capture.pcap' #Ruta donde queremos guardar la captura pcap del tráfico trasnmitido
+    
+    # Direcciones específicas para este tráfico
+    IP_src:
+      src1: '16.0.0.10'
+      src2: '16.0.0.254'
+      op: 'inc'
+    IP_dst:
+      dst1: '48.0.0.70'
+      dst2: '48.0.0.254'
+      op: 'inc'
+
+  - text: 'Tráfico HTTP GET'
+    pcap_file: './cap2/http_get2.pcap'
+    users: 1
+    capture_file: './Traffic_capture/http_get_capture.pcap'
+    
+    IP_src:
+      src1: '16.0.0.25'
+      src2: '16.0.0.254'
+      op: 'inc'
+  
+  - text: 'Tráfico HTTP POST'
+    pcap_file: './cap2/http_post2.pcap'
+    users: 1
+    capture_file: './Traffic_capture/http_post_capture.pcap'
+    
+    IP_dst:
+      dst1: '48.0.0.60'
+      dst2: '48.0.0.254'
+      op: 'inc'
+  
+  - text: 'Tráfico MAIL POP'
+    pcap_file: './cap2/mail_pop2.pcap'
+    users: 1
+    capture_file: './Traffic_capture/mail_pop_capture.pcap'
+  
+  - text: 'Tráfico ORACLE'
+    pcap_file: './cap2/oracle2.pcap'
+    users: 0
+    capture_file: './Traffic_capture/oracle_capture.pcap'
+  
+  - text: 'Tráfico VIDEO CALL'
+    pcap_file: './cap2/Video_Calls2.pcap'
+    users: 0
+    capture_file: './Traffic_capture/video_calls_capture.pcap'
+  
+  - text: 'Tráfico VOICE CALL'
+    pcap_file: './cap2/Voice_calls_rtp_only2.pcap'
+    users: 0
+    capture_file: './Traffic_capture/Voice_calls_rtp_capture.pcap'
+  
+  - text: 'Tráfico TELNET'
+    pcap_file: './cap2/telnet2.pcap'
+    users: 0
+    capture_file: './Traffic_capture/telnet_capture.pcap'
+  
+  - text: 'Tráfico GMAIL'
+    pcap_file: './cap2/gmail2.pcap'
+    users: 0
+    capture_file: './Traffic_capture/gmail_capture.pcap'   
+
